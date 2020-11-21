@@ -4,6 +4,6 @@ My implementation of the final assessment project Udacity's React & Redux course
 
 ## Setup Instructions
 
-- install all project dependencies with npm install
-- build with npm run build
-- start the development server with npm start
+- install all project dependencies with `npm install`
+- build with `npm run build`
+- start the development server with `npm start`
