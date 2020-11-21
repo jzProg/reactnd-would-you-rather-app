@@ -1,8 +1,8 @@
 import { React, Component } from 'react';
+import { withRouter, Route } from 'react-router-dom';
 import Login from './Login';
 import Register from './Register';
-import sha256 from 'crypto-js/sha256';
-import { withRouter, Route } from 'react-router-dom';
+import { getHash } from '../utils/encryption';
 
 class Visitor extends Component {
 
@@ -12,7 +12,7 @@ class Visitor extends Component {
 
   createAccount = (username, pass) => {
     let users = JSON.parse(localStorage.getItem('users') || JSON.stringify({}));
-    users[username] = sha256(pass).words;
+    users[username] = getHash(pass);
     localStorage.setItem('users', JSON.stringify(users));
     sessionStorage.setItem('authed', pass);
     this.props.auth(pass);
@@ -21,10 +21,10 @@ class Visitor extends Component {
 
   auth =  (username, pass) => {
     const users = JSON.parse(localStorage.getItem('users')  || JSON.stringify({}));
-    if (JSON.stringify(users[username]) === JSON.stringify(sha256(pass).words)) {
+    if (JSON.stringify(users[username]) === JSON.stringify(getHash(pass))) {
       sessionStorage.setItem('authed', pass);
       this.props.auth(pass);
-      this.props.history.push('/'); 
+      this.props.history.push('/');
     }
     else console.log("auth fail");
   }
