@@ -1,4 +1,4 @@
-import { withRouter, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function Register(props) {
 
@@ -7,7 +7,7 @@ function Register(props) {
     const inputUsername = document.getElementById('username').value;
     const inputPassword = document.getElementById('password').value;
     const inputName = document.getElementById('name').value;
-    props.register(inputUsername, inputName, inputPassword); // TODO avatar
+    props.onRegister(inputUsername, inputName, inputPassword); // TODO avatar
   }
 
   return (
@@ -23,4 +23,4 @@ function Register(props) {
   )
 }
 
-export default withRouter(Register);
+export default Register;

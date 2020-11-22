@@ -4,7 +4,7 @@ import { Route } from 'react-router-dom';
 function PrivateRoute ({ component: Component, token, users, ...props }) {
 
   function checkAuth() {
-    return Object.values(users).filter(user => user.token === token).length;
+    return token && Object.values(users).filter(user => user.token === token).length;
   }
 
   return (

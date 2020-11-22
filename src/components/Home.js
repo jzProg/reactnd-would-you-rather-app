@@ -15,6 +15,7 @@ class Home extends Component {
    return (
      <div>
       <div>Home</div>
+      <div>{this.props.username}</div>
       <Leaderboard/>
       <button type="button" onClick={this.logout}>logout</button>
      </div>
@@ -24,6 +25,7 @@ class Home extends Component {
 
 function mapStateToProps({ authed, users }) {
   return {
+    username: authed.username
   }
 }
 

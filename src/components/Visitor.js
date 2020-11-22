@@ -26,8 +26,12 @@ class Visitor extends Component {
   render() {
    return (
      <div>
-      <Route exact path='/login'><Login login={this.auth}/></Route>
-      <Route exact path='/register'><Register register={this.createAccount}/></Route>
+      <Route exact path='/login'>
+        <Login onAuth={this.auth} usernames={Object.keys(this.props.users)}/>
+      </Route>
+      <Route exact path='/register'>
+        <Register onRegister={this.createAccount}/>
+      </Route>
      </div>
    )
  }
@@ -35,7 +39,8 @@ class Visitor extends Component {
 
 function mapStateToProps({ authed, users }) {
   return {
-    authToken: authed
+    authToken: authed.token,
+    users
   }
 }
 

@@ -2,6 +2,8 @@ let users = {
   sarahedo: {
     id: 'sarahedo',
     name: 'Sarah Edo',
+    token: '',
+    pass: '425ca567c84578f4',//1234
     avatarURL: '',
     answers: {
       "8xf0y6ziyjabvozdd253nd": 'optionOne',
@@ -15,6 +17,8 @@ let users = {
     id: 'tylermcginnis',
     name: 'Tyler McGinnis',
     avatarURL: '',
+    token: '',
+    pass: '425ca567c84578f4',
     answers: {
       "vthrdm985a262al8qx3do": 'optionOne',
       "xj352vofupe1dqz9emx13r": 'optionTwo',
@@ -24,6 +28,8 @@ let users = {
   johndoe: {
     id: 'johndoe',
     name: 'John Doe',
+    token: '',
+    pass: '425ca567c84578f4',
     avatarURL: '',
     answers: {
       "xj352vofupe1dqz9emx13r": 'optionOne',
