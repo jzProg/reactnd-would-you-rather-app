@@ -8,7 +8,12 @@ import { createUserAccount, authenticate } from '../actions/shared';
 class Visitor extends Component {
 
   state = {
-    selectedAvatarIndex: 0
+    selectedAvatarIndex: 0,
+    error: ''
+  }
+
+  clearError = () => {
+    this.setState({ error: ''});
   }
 
   choose = (code) => {
@@ -16,18 +21,30 @@ class Visitor extends Component {
   }
 
   createAccount = (username, name, pass) => {
+    if (!username || !pass || !name) {
+      this.setState({ error: 'All fields are required...'});
+      return;
+    }
+    if (this.props.users[username]) {
+      this.setState({ error: 'User already exists...'});
+      return;
+    }
     const avatar = `/avatars/avatar${this.state.selectedAvatarIndex}.png`;
     this.props.dispatch(createUserAccount(username, name, pass, avatar)).then(() => {
       this.props.history.push('/');
     });
   }
 
-  auth =  (username, pass) => {
+  auth = (username, pass) => {
+  if (!username || !pass) {
+    this.setState({ error: 'All fields are required...'});
+    return;
+  }
   this.props.dispatch(authenticate(username, pass)).then(() => {
       if (this.props.authToken) {
         this.props.history.push('/');
       } else {
-        console.log("auth fail");  // TODO change
+        this.setState({ error: 'wrong password...'});
       }
     });
   }
@@ -36,10 +53,10 @@ class Visitor extends Component {
    return (
      <div>
       <Route exact path='/login'>
-        <Login onAuth={this.auth} usernames={Object.keys(this.props.users)}/>
+        <Login onAuth={this.auth} usernames={Object.keys(this.props.users)} errorMessage={this.state.error} onClear={this.clearError}/>
       </Route>
       <Route exact path='/register'>
-        <Register onRegister={this.createAccount} onChoose={this.choose} selected={this.state.selectedAvatarIndex}/>
+        <Register onRegister={this.createAccount} onChoose={this.choose} selected={this.state.selectedAvatarIndex} errorMessage={this.state.error} onClear={this.clearError}/>
       </Route>
      </div>
    )

@@ -15,7 +15,7 @@ function Register(props) {
   }
 
   function getAvatarStyle(code) {
-    return { opacity : props.selected !== code ? '0.5' : '1', cursor: 'pointer', margin: '1%'};
+    return { opacity : props.selected !== code ? '0.5' : '1.0', cursor: 'pointer', margin: '1%'};
   }
 
   return (
@@ -24,18 +24,19 @@ function Register(props) {
        <div className="formContainer">
          <div>
            <label>username</label><br/>
-           <input id="username" type="text"/>
+           <input id="username" type="text" onFocus={props.onClear}/>
          </div>
          <div>
            <label>name</label><br/>
-           <input id="name" type="text"/>
+           <input id="name" type="text" onFocus={props.onClear}/>
          </div>
          <div>
            <label>password</label><br/>
-           <input id="password" type="password"/>
+           <input id="password" type="password" onFocus={props.onClear}/>
          </div>
        </div>
-       <h3>Choose your avatar: </h3>
+       <span className="error">{ props.errorMessage }</span>
+       <h3>Choose your avatar</h3>
        { [...Array(4).keys()].map(num =>
          <img style={getAvatarStyle(num + 1)}
               onClick={() => choose(num + 1)}

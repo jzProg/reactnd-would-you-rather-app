@@ -25,6 +25,11 @@ input, select {
   margin-top: 4%;
 }
 
+.error {
+  color: red;
+  font-size: calc(2px + 2vmin);
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

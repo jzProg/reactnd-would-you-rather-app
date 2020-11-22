@@ -21,12 +21,13 @@ function Login(props) {
          </div>
          <div>
            <label>password</label><br/>
-           <input id="password" type="password"/>
+           <input id="password" type="password" onFocus={props.onClear}/>
          </div>
        </div>
+       <span className="error">{ props.errorMessage }</span><br/>
        <button type="button"
                className="btn btn-primary"
-               style={{ margin: '4%'}}
+               style={{ margin: '2%'}}
                onClick={authenticate}>
           <b>LOGIN</b>
        </button><br/>
