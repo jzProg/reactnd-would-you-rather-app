@@ -12,10 +12,11 @@ class Home extends Component {
   }
 
   render() {
+  const { username, users } = this.props;
    return (
      <div>
-      <div>Home</div>
-      <div>{this.props.username}</div>
+      <div>{username}</div>
+      <img src={ (users[username] && users[username].avatarURL)  || '/avatars/profile_default.png' } alt="Avatar" className="avatar"/><br/>
       <Leaderboard/>
       <button type="button" onClick={this.logout}>logout</button>
      </div>
@@ -25,7 +26,8 @@ class Home extends Component {
 
 function mapStateToProps({ authed, users }) {
   return {
-    username: authed.username
+    username: authed.username,
+    users
   }
 }
 

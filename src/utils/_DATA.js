@@ -4,7 +4,7 @@ let users = {
     name: 'Sarah Edo',
     token: '',
     pass: '425ca567c84578f4',//1234
-    avatarURL: '',
+    avatarURL: '/avatars/avatar4.png',
     answers: {
       "8xf0y6ziyjabvozdd253nd": 'optionOne',
       "6ni6ok3ym7mf1p33lnez": 'optionTwo',
@@ -16,7 +16,7 @@ let users = {
   tylermcginnis: {
     id: 'tylermcginnis',
     name: 'Tyler McGinnis',
-    avatarURL: '',
+    avatarURL: '/avatars/avatar.png',
     token: '',
     pass: '425ca567c84578f4',
     answers: {
@@ -30,7 +30,7 @@ let users = {
     name: 'John Doe',
     token: '',
     pass: '425ca567c84578f4',
-    avatarURL: '',
+    avatarURL: '/avatars/avatar2.png',
     answers: {
       "xj352vofupe1dqz9emx13r": 'optionOne',
       "vthrdm985a262al8qx3do": 'optionTwo',
