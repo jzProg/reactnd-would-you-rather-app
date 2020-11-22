@@ -1,14 +1,15 @@
 import { React, Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import Leaderboard from './Leaderboard';
 import { logoutUser } from '../actions/shared';
 import { connect } from 'react-redux';
+import Leaderboard from './Leaderboard';
 
 class Home extends Component {
 
   logout = () => {
-    this.props.dispatch(logoutUser());
-    this.props.history.push('/login');
+    const { dispatch, history } = this.props;
+    dispatch(logoutUser());
+    history.push('/login');
   }
 
   render() {

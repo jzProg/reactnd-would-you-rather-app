@@ -2,12 +2,12 @@ import { Link } from 'react-router-dom';
 
 function Login(props) {
 
- function authenticate(event) {
-   event.preventDefault();
-   const inputUsername = document.getElementById('username').value;
-   const inputPassword = document.getElementById('password').value;
-   props.onAuth(inputUsername, inputPassword);
- }
+  function authenticate(event) {
+    event.preventDefault();
+    const inputUsername = document.getElementById('username').value;
+    const inputPassword = document.getElementById('password').value;
+    props.onAuth(inputUsername, inputPassword);
+  }
 
   return (
     <div>

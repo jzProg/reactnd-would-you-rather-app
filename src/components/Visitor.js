@@ -50,13 +50,14 @@ class Visitor extends Component {
   }
 
   render() {
+   const { error, selectedAvatarIndex } = this.state;
    return (
      <div>
       <Route exact path='/login'>
-        <Login onAuth={this.auth} usernames={Object.keys(this.props.users)} errorMessage={this.state.error} onClear={this.clearError}/>
+        <Login onAuth={this.auth} usernames={Object.keys(this.props.users)} errorMessage={error} onClear={this.clearError}/>
       </Route>
       <Route exact path='/register'>
-        <Register onRegister={this.createAccount} onChoose={this.choose} selected={this.state.selectedAvatarIndex} errorMessage={this.state.error} onClear={this.clearError}/>
+        <Register onRegister={this.createAccount} onChoose={this.choose} selected={selectedAvatarIndex} errorMessage={error} onClear={this.clearError}/>
       </Route>
      </div>
    )
