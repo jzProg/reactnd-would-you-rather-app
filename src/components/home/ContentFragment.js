@@ -1,11 +1,9 @@
-import { React, Component } from 'react';
-import { withRouter, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import Leaderboard from './Leaderboard';
 import AddNewQuestion from './AddNewQuestion';
 import QuestionList from './QuestionList';
 
-class ContentFragment extends Component {
-  render() {
+function ContentFragment() {
    return (
      <div>
        <Route exact path='/home'>
@@ -19,7 +17,6 @@ class ContentFragment extends Component {
        </Route>
      </div>
    )
- }
 }
 
-export default withRouter(ContentFragment);
+export default ContentFragment;
