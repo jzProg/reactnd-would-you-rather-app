@@ -1,5 +1,5 @@
 import { React, Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchInitialData } from '../actions/shared';
 import Visitor from './Visitor';
@@ -26,8 +26,8 @@ class App extends Component {
           <div className="App">
               { this.state.load && (
                   <header className="App-header">
-                    <Route exact path='/home'><Home/></Route>
-                    <PrivateRoute component={Visitor} users={users} path='/' token={authToken}/>
+                    <Visitor/>
+                    <PrivateRoute component={Home} users={users} path='/home' token={authToken}/>
                   </header>
               )}
             <Footer/>

@@ -1,11 +1,10 @@
 import { React, Component } from 'react';
 import { withRouter, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
 import { createUserAccount, authenticate } from '../actions/shared';
 import Login from './Login';
 import Register from './Register';
+import VisitorWrapper from './VisitorWrapper';
 
 class Visitor extends Component {
 
@@ -44,7 +43,7 @@ class Visitor extends Component {
   }
   this.props.dispatch(authenticate(username, pass)).then(() => {
       if (this.props.authToken) {
-        this.props.history.push('/');
+        this.props.history.push('/home');
       } else {
         this.setState({ error: 'wrong password...'});
       }
@@ -54,20 +53,21 @@ class Visitor extends Component {
   render() {
    const { error, selectedAvatarIndex } = this.state;
    return (
-     <div>
-       <div className="App-logo">
-         <FontAwesomeIcon icon={faQuestionCircle} size="lg" style={{ marginTop: '2%', color: '#337ab7'}}/><br/>
-         <h1><b><i>Would You Rather...</i></b></h1>
-       </div>
-       <div className="App-content">
-        <Route exact path='/'>
-          <Login onAuth={this.auth} usernames={Object.keys(this.props.users)} errorMessage={error} onClear={this.clearError}/>
-        </Route>
-        <Route exact path='/register'>
-          <Register onRegister={this.createAccount} onChoose={this.choose} selected={selectedAvatarIndex} errorMessage={error} onClear={this.clearError}/>
-        </Route>
-       </div>
-     </div>
+     <Route path='/'>
+       <VisitorWrapper component={Login}
+                       path="/"
+                       onAuth={this.auth}
+                       usernames={Object.keys(this.props.users)}
+                       errorMessage={error}
+                       onClear={this.clearError}/>
+       <VisitorWrapper component={Register}
+                       path="/register"
+                       onRegister={this.createAccount}
+                       onChoose={this.choose}
+                       selected={selectedAvatarIndex}
+                       errorMessage={error}
+                       onClear={this.clearError}/>
+     </Route>
    )
  }
 }
