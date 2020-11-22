@@ -45,6 +45,12 @@ input, select {
   font-size: calc(10px + 2vmin);
 }
 
+.App-home {
+  min-height: 100vh;
+  color: white;
+  font-size: calc(10px + 2vmin);
+}
+
 .App-header {
   background-color: #282c34;
   color: white;

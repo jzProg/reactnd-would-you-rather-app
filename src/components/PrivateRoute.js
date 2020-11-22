@@ -11,10 +11,10 @@ function PrivateRoute ({ component: Component, token, users, ...props }) {
     <Route
       {...props}
       render={innerProps =>
-        checkAuth() ? (
+        !checkAuth() ? (
           <Component {...innerProps} />
         ) : (
-          <Redirect to={{ pathname: "/login", state: { from: props.location }}}/>
+          <Redirect to={{ pathname: "/home", state: { from: props.location }}}/>
         )
       }
     />

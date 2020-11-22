@@ -1,7 +1,5 @@
 import { React, Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faQuestion, faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
 import { connect } from 'react-redux';
 import { fetchInitialData } from '../actions/shared';
 import Visitor from './Visitor';
@@ -26,18 +24,12 @@ class App extends Component {
     return (
         <Router>
           <div className="App">
-            <header className="App-header">
-              <div className="App-logo">
-                <FontAwesomeIcon icon={faQuestionCircle} size="lg" style={{ marginTop: '2%', color: '#337ab7'}}/><br/>
-                <h1><b><i>Would You Rather...</i></b></h1>
-              </div>
-              <div className="App-content">
-                <Route path='/'>
-                 <Visitor />
-                </Route>
-                { this.state.load && (<PrivateRoute component={Home} users={users} path='/' token={authToken}/>)}
-              </div>
-            </header>
+              { this.state.load && (
+                  <header className="App-header">
+                    <Route exact path='/home'><Home/></Route>
+                    <PrivateRoute component={Visitor} users={users} path='/' token={authToken}/>
+                  </header>
+              )}
             <Footer/>
           </div>
         </Router>
