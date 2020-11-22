@@ -11,20 +11,26 @@ function Login(props) {
 
   return (
     <div>
-     <h3>You need to sign In to access content</h3>
-     <span>username:
-       <select name="username" id="username">
-         {props.usernames.map(username => <option key={username} value={username}>{username}</option>)}
-       </select>
-     </span><br/>
-     <span>password:
-        <input id="password" type="password"/>
-     </span><br/>
-     <button type="button" onClick={authenticate}>
-        Login
-     </button><br/>
-     <span>Not a member? </span>
-     <Link to={'/register'}>Register here</Link>
+       <h3>You need to sign In to access content</h3>
+       <div className="formContainer">
+         <div>
+           <label>username</label><br/>
+           <select name="username" id="username">
+             {props.usernames.map(username => <option key={username} value={username}>{username}</option>)}
+           </select>
+         </div>
+         <div>
+           <label>password</label><br/>
+           <input id="password" type="password"/>
+         </div>
+       </div>
+       <button type="button"
+               className="btn btn-primary"
+               style={{ margin: '4%'}}
+               onClick={authenticate}>
+          <b>LOGIN</b>
+       </button><br/>
+       <h4><i>Not a member? </i><Link to={'/register'}>Register here</Link></h4>
     </div>
   )
 }

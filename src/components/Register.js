@@ -14,24 +14,44 @@ function Register(props) {
     props.onChoose(code);
   }
 
+  function getAvatarStyle(code) {
+    return { opacity : props.selected !== code ? '0.5' : '1', cursor: 'pointer', margin: '1%'};
+  }
+
   return (
     <div>
-     <h3>Be A Member</h3>
-     <span>username: <input id="username" type="text"/>
-     </span>
-     <br/>
-     <span>name: <input id="name" type="text"/>
-     </span>
-     <br/>
-     <span>password: <input id="password" type="password"/>
-     </span>
-     <br/>
-     <span>Choose your avatar: </span>
-       { [...Array(4).keys()].map(num => <img style = {{ opacity : props.selected !== num + 1 ? '0.5' : '1', cursor: 'pointer'}} onClick={() => choose(num + 1)} className="avatar" alt="avatar" src={`/avatars/avatar${num + 1}.png`} key={num}/>) }
-     <br/>
-     <button type="button" onClick={register}>Register</button><br/>
-     <span>Already a member? </span>
-     <Link to={'/login'}>Sign In here</Link>
+       <h3>Be A Member!</h3>
+       <div className="formContainer">
+         <div>
+           <label>username</label><br/>
+           <input id="username" type="text"/>
+         </div>
+         <div>
+           <label>name</label><br/>
+           <input id="name" type="text"/>
+         </div>
+         <div>
+           <label>password</label><br/>
+           <input id="password" type="password"/>
+         </div>
+       </div>
+       <h3>Choose your avatar: </h3>
+       { [...Array(4).keys()].map(num =>
+         <img style={getAvatarStyle(num + 1)}
+              onClick={() => choose(num + 1)}
+              className="avatar"
+              alt="avatar"
+              src={`/avatars/avatar${num + 1}.png`}
+              key={num}/>
+        )}
+       <br/>
+       <button type="button"
+               className="btn btn-primary"
+               style={{ margin: '4%'}}
+               onClick={register}>
+               <b>REGISTER</b>
+       </button>
+       <h4><i>Already a member? </i> <Link to={'/login'}>Sign In here</Link></h4>
     </div>
   )
 }

@@ -6,6 +6,8 @@ import Visitor from './Visitor';
 import Home from './Home';
 import PrivateRoute from './PrivateRoute';
 import Footer from './Footer';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faQuestion, faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
 
 class App extends Component {
 
@@ -24,6 +26,7 @@ class App extends Component {
         <Router>
           <div className="App">
             <header className="App-header">
+              <FontAwesomeIcon icon={faQuestion}/> <i>Would You Rather...</i>
               <Route path='/'>
                <Visitor />
               </Route>
