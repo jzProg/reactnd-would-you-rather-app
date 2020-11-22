@@ -11,7 +11,7 @@ function Login(props) {
 
   return (
     <div>
-       <h3>You need to sign In to access content</h3>
+       <h3>Sign In to access content!</h3>
        <div className="formContainer">
          <div>
            <label>username</label><br/>
