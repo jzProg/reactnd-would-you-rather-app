@@ -63,6 +63,15 @@ input, select {
   border-radius: 50%;
 }
 
+  .navItem {
+    cursor: pointer;
+    padding: 3px;
+  }
+
+  .navItem:hover {
+    background-color: darkgray;
+  }
+
 .footer{
   margin-top: 1rem;
   padding: 1rem;
