@@ -16,7 +16,7 @@ let users = {
   tylermcginnis: {
     id: 'tylermcginnis',
     name: 'Tyler McGinnis',
-    avatarURL: '/avatars/avatar.png',
+    avatarURL: '/avatars/avatar1.png',
     token: '',
     pass: '425ca567c84578f4',
     answers: {

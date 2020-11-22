@@ -30,9 +30,9 @@ export function authenticate(username, pass) {
   }
 }
 
-export function createUserAccount(username, name, pass) {
+export function createUserAccount(username, name, pass, avatar) {
   return (dispatch) => {
-    return _createUser(username, name, getHash(pass))
+    return _createUser(username, name, getHash(pass), avatar)
         .then((users) => {
           dispatch(setUsers(users));
           sessionStorage.setItem('authed', users[username].token);

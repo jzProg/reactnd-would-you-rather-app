@@ -16,7 +16,7 @@ class Home extends Component {
    return (
      <div>
       <div>{username}</div>
-      <img src={ (users[username] && users[username].avatarURL)  || '/avatars/profile_default.png' } alt="Avatar" className="avatar"/><br/>
+      <img src={users[username] && users[username].avatarURL} alt="Avatar" className="avatar"/><br/>
       <Leaderboard/>
       <button type="button" onClick={this.logout}>logout</button>
      </div>

@@ -7,8 +7,17 @@ import { createUserAccount, authenticate } from '../actions/shared';
 
 class Visitor extends Component {
 
+  state = {
+    selectedAvatarIndex: 0
+  }
+
+  choose = (code) => {
+    this.setState({ selectedAvatarIndex : code });
+  }
+
   createAccount = (username, name, pass) => {
-    this.props.dispatch(createUserAccount(username, name, pass)).then(() => {
+    const avatar = `/avatars/avatar${this.state.selectedAvatarIndex}.png`;
+    this.props.dispatch(createUserAccount(username, name, pass, avatar)).then(() => {
       this.props.history.push('/');
     });
   }
@@ -30,7 +39,7 @@ class Visitor extends Component {
         <Login onAuth={this.auth} usernames={Object.keys(this.props.users)}/>
       </Route>
       <Route exact path='/register'>
-        <Register onRegister={this.createAccount}/>
+        <Register onRegister={this.createAccount} onChoose={this.choose} selected={this.state.selectedAvatarIndex}/>
       </Route>
      </div>
    )
