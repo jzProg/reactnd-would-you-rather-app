@@ -4,7 +4,10 @@ function Register(props) {
 
   function register(event) {
     event.preventDefault();
-    props.register(document.getElementById('username').value, document.getElementById('name').value, document.getElementById('password').value); // TODO avatar
+    const inputUsername = document.getElementById('username').value;
+    const inputPassword = document.getElementById('password').value;
+    const inputName = document.getElementById('name').value;
+    props.register(inputUsername, inputName, inputPassword); // TODO avatar
   }
 
   return (
@@ -14,7 +17,8 @@ function Register(props) {
      <span>name: <input id="name" type="text"/></span><br/>
      <span>password: <input id="password" type="password"/></span><br/>
      <button type="button" onClick={register}>Register</button><br/>
-     <span>Already a member? </span><Link to={'/login'}>Sign In here</Link>
+     <span>Already a member? </span>
+     <Link to={'/login'}>Sign In here</Link>
     </div>
   )
 }

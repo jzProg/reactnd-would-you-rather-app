@@ -7,10 +7,6 @@ import { createUserAccount, authenticate } from '../actions/shared';
 
 class Visitor extends Component {
 
-  state = {
-    showLogin: true,
-  }
-
   createAccount = (username, name, pass) => {
     this.props.dispatch(createUserAccount(username, name, pass)).then(() => {
       this.props.history.push('/');
