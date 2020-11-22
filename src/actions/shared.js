@@ -10,7 +10,7 @@ export function fetchInitialData() {
           dispatch(setUsers(users));
           const token = sessionStorage.getItem('authed');
           dispatch(setAuthedToken(token));
-          const usersWithThisToken = Object.values(users).filter(user => user.token = token);
+          const usersWithThisToken = Object.values(users).filter(user => user.token === token);
           if (usersWithThisToken.length) {
             dispatch(setAuthedUsername(usersWithThisToken[0].username));
           }

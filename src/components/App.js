@@ -5,11 +5,18 @@ import { fetchInitialData } from '../actions/shared';
 import Visitor from './Visitor';
 import Home from './Home';
 import PrivateRoute from './PrivateRoute';
+import Footer from './Footer';
 
 class App extends Component {
 
+  state = {
+    load: false
+  }
+
   componentDidMount() {
-    this.props.dispatch(fetchInitialData());
+    this.props.dispatch(fetchInitialData()).then(() => {
+      this.setState({ load: true });
+    });
   }
 
   render() {
@@ -20,8 +27,9 @@ class App extends Component {
               <Route path='/'>
                <Visitor />
               </Route>
-              <PrivateRoute component={Home} users={this.props.users} path='/' token={this.props.authToken}/>
+              { this.state.load && (<PrivateRoute component={Home} users={this.props.users} path='/' token={this.props.authToken}/>)}
             </header>
+            <Footer/>
           </div>
         </Router>
       )
