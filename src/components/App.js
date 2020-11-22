@@ -26,11 +26,16 @@ class App extends Component {
         <Router>
           <div className="App">
             <header className="App-header">
-              <FontAwesomeIcon icon={faQuestion}/> <i>Would You Rather...</i>
-              <Route path='/'>
-               <Visitor />
-              </Route>
-              { this.state.load && (<PrivateRoute component={Home} users={this.props.users} path='/' token={this.props.authToken}/>)}
+              <div className="App-logo">
+                <FontAwesomeIcon icon={faQuestionCircle} size="lg" style={{ marginTop: '2%', color: '#337ab7'}}/><br/>
+                <h1><b><i>Would You Rather...</i></b></h1>
+              </div>
+              <div className="App-content">
+                <Route path='/'>
+                 <Visitor />
+                </Route>
+                { this.state.load && (<PrivateRoute component={Home} users={this.props.users} path='/' token={this.props.authToken}/>)}
+              </div>
             </header>
             <Footer/>
           </div>

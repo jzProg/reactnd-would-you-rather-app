@@ -12,7 +12,7 @@ class Home extends Component {
   }
 
   render() {
-  const { username, users } = this.props;
+   const { username, users } = this.props;
    return (
      <div>
       <div>{username}</div>
