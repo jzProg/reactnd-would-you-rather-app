@@ -1,18 +1,15 @@
 import { React, Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { fetchInitialData } from '../actions/shared';
 import Visitor from './Visitor';
 import Home from './Home';
 import PrivateRoute from './PrivateRoute';
 
 class App extends Component {
 
-  state = {
-    authToken: '',
-    isLoaded: false
-  }
-
   componentDidMount() {
-   this.setState({ authToken: sessionStorage.getItem('authed'), isLoaded: true })
+    this.props.dispatch(fetchInitialData());
   }
 
   render() {
@@ -21,9 +18,9 @@ class App extends Component {
           <div className="App">
             <header className="App-header">
               <Route path='/'>
-               <Visitor auth={(token) => { this.setState({ authToken: token }); }}/>
+               <Visitor />
               </Route>
-              {this.state.isLoaded && (<PrivateRoute component={Home} path='/' token={this.state.authToken}/>)}
+              <PrivateRoute component={Home} users={this.props.users} path='/' token={this.props.authToken}/>
             </header>
           </div>
         </Router>
@@ -31,4 +28,11 @@ class App extends Component {
   }
 }
 
-export default App;
+function mapStateToProps({ authed, users }) {
+  return {
+    users: users,
+    authToken: authed
+  }
+}
+
+export default connect(mapStateToProps)(App);

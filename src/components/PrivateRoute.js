@@ -1,12 +1,10 @@
 import { Redirect } from "react-router";
 import { Route } from 'react-router-dom';
-import { getHash } from '../utils/encryption';
 
-function PrivateRoute ({ component: Component, token, ...props }) {
+function PrivateRoute ({ component: Component, token, users, ...props }) {
 
   function checkAuth() {
-    let users = JSON.parse(localStorage.getItem('users') || JSON.stringify({}));
-    return Object.values(users).filter(value => JSON.stringify(value) === JSON.stringify(getHash(token))).length;
+    return Object.values(users).filter(user => user.token === token).length;
   }
 
   return (

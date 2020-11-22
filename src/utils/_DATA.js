@@ -2,7 +2,7 @@ let users = {
   sarahedo: {
     id: 'sarahedo',
     name: 'Sarah Edo',
-    avatarURL: ,
+    avatarURL: '',
     answers: {
       "8xf0y6ziyjabvozdd253nd": 'optionOne',
       "6ni6ok3ym7mf1p33lnez": 'optionTwo',
@@ -14,7 +14,7 @@ let users = {
   tylermcginnis: {
     id: 'tylermcginnis',
     name: 'Tyler McGinnis',
-    avatarURL: ,
+    avatarURL: '',
     answers: {
       "vthrdm985a262al8qx3do": 'optionOne',
       "xj352vofupe1dqz9emx13r": 'optionTwo',
@@ -24,7 +24,7 @@ let users = {
   johndoe: {
     id: 'johndoe',
     name: 'John Doe',
-    avatarURL: ,
+    avatarURL: '',
     answers: {
       "xj352vofupe1dqz9emx13r": 'optionOne',
       "vthrdm985a262al8qx3do": 'optionTwo',
@@ -119,6 +119,39 @@ function generateUID () {
   return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
 }
 
+export function _authenticateUser (username, pass) {
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      let token = null;
+      if (users[username].pass === pass) {
+        token = generateUID();
+        users[username].token = token;
+      }
+      res({ ...users, token })
+    }, 1000)
+  })
+}
+
+export function _createUser (username, name, pass, avatarURL) {
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      users = {
+        ...users,
+        [username]: {
+          id: username,
+          name,
+          pass,
+          avatarURL,
+          answers: {},
+          questions: [],
+          token: generateUID()
+        }
+      }
+      res({...users})
+    }, 1000)
+  })
+}
+
 export function _getUsers () {
   return new Promise((res, rej) => {
     setTimeout(() => res({...users}), 1000)
@@ -157,7 +190,7 @@ export function _saveQuestion (question) {
         ...questions,
         [formattedQuestion.id]: formattedQuestion
       }
-      
+
       users = {
         ...users,
         [authedUser]: {

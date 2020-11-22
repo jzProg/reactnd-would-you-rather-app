@@ -1,8 +1,9 @@
 import { React, Component } from 'react';
 import { withRouter, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
 import Login from './Login';
 import Register from './Register';
-import { getHash } from '../utils/encryption';
+import { createUserAccount, authenticate } from '../actions/shared';
 
 class Visitor extends Component {
 
@@ -10,23 +11,20 @@ class Visitor extends Component {
     showLogin: true,
   }
 
-  createAccount = (username, pass) => {
-    let users = JSON.parse(localStorage.getItem('users') || JSON.stringify({}));
-    users[username] = getHash(pass);
-    localStorage.setItem('users', JSON.stringify(users));
-    sessionStorage.setItem('authed', pass);
-    this.props.auth(pass);
-    this.props.history.push('/');
+  createAccount = (username, name, pass) => {
+    this.props.dispatch(createUserAccount(username, name, pass)).then(() => {
+      this.props.history.push('/');
+    });
   }
 
   auth =  (username, pass) => {
-    const users = JSON.parse(localStorage.getItem('users')  || JSON.stringify({}));
-    if (JSON.stringify(users[username]) === JSON.stringify(getHash(pass))) {
-      sessionStorage.setItem('authed', pass);
-      this.props.auth(pass);
-      this.props.history.push('/');
-    }
-    else console.log("auth fail");
+  this.props.dispatch(authenticate(username, pass)).then(() => {
+      if (this.props.authToken) {
+        this.props.history.push('/');
+      } else {
+        console.log("auth fail");  // TODO change
+      }
+    });
   }
 
   render() {
@@ -39,4 +37,10 @@ class Visitor extends Component {
  }
 }
 
-export default withRouter(Visitor);
+function mapStateToProps({ authed, users }) {
+  return {
+    authToken: authed
+  }
+}
+
+export default connect(mapStateToProps)(withRouter(Visitor));
