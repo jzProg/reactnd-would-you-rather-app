@@ -1,7 +1,7 @@
 import { React, Component } from 'react';
 import { withRouter, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { createUserAccount, authenticate } from '../actions/shared';
+import { createUserAccount, authenticate } from '../../actions/shared';
 import Login from './Login';
 import Register from './Register';
 import VisitorWrapper from './VisitorWrapper';

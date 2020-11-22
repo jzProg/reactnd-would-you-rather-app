@@ -1,6 +1,6 @@
 import { React, Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import { logoutUser } from '../actions/shared';
+import { logoutUser } from '../../actions/shared';
 import { connect } from 'react-redux';
 import Leaderboard from './Leaderboard';
 import NavigationBar from './NavigationBar';
