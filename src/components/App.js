@@ -2,8 +2,8 @@ import { React, Component } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchInitialData } from '../actions/shared';
-import Visitor from './Visitor';
-import Home from './Home';
+import Visitor from './visitor/Visitor';
+import Home from './home/Home';
 import PrivateRoute from './PrivateRoute';
 import Footer from './Footer';
 
