@@ -4,23 +4,35 @@ import { connect } from 'react-redux';
 import Question from './Question';
 
 class QuestionList extends Component {
+
+  hasUserAnswered = (question) => {
+    const { selected, user } = this.props;
+    const hasAnswer = question.optionOne.votes.indexOf(user) !== -1 || question.optionTwo.votes.indexOf(user) !== -1;
+    if (!selected) { // unanswered
+      return !hasAnswer;
+    }
+    return hasAnswer;
+  }
+
+  seeDetails = (questionId) => {
+
+  }
+
   render() {
    return (
      <div>
-      <ul>
-        { Object.values(this.props.questions).map(question =>
-          <li>
-          { question.id }
-          </li>) }
-      </ul>
+        { this.props.questions.filter(question => this.hasUserAnswered(question)).map(question =>
+          <Question key={question.id} question={question} onDetails={this.seeDetails}/>)
+        }
      </div>
    )
  }
 }
 
-function mapStateToProps({ questions }) {
+function mapStateToProps({ questions, authed }) {
   return {
-    questions
+    questions: Object.values(questions).sort((question1, question2) => question1.timestamp < question2.timestamp),
+    user: authed.username
   }
 }
 

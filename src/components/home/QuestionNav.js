@@ -26,7 +26,7 @@ class QuestionNav extends Component {
                        selected={selected}
                        categories={categories}
                        onToggle={this.toggle}/>
-        <QuestionList/>
+        <QuestionList selected={selected}/>
       </div>
    )
   }

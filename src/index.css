@@ -96,6 +96,13 @@ input, select {
   margin-top: 10%;
 }
 
+.question {
+  border-style: solid;
+  border-color: gray;
+  padding: 1%;
+  margin-top: 2%;
+}
+
 .footer{
   margin-top: 1rem;
   padding: 1rem;
