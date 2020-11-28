@@ -63,14 +63,33 @@ input, select {
   border-radius: 50%;
 }
 
-  .navItem {
-    cursor: pointer;
-    padding: 3px;
-  }
+.navItem {
+  cursor: pointer;
+  padding: 3px;
+}
 
-  .navItem:hover {
-    background-color: darkgray;
-  }
+.navItem:hover {
+  background-color: darkgray;
+}
+
+.user {
+  border-style: solid;
+  border-color: gray;
+  padding: 1%;
+  margin: 1%;
+}
+
+.userDiv {
+   padding: 1%;
+}
+
+.username {
+  margin-left: 4px;
+}
+
+.score {
+  margin-left: 1%;
+}
 
 .footer{
   margin-top: 1rem;

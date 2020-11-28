@@ -5,7 +5,7 @@ import QuestionList from './QuestionList';
 
 function ContentFragment() {
    return (
-     <div>
+     <div class="container">
        <Route exact path='/home'>
          <QuestionList/>
        </Route>
