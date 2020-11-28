@@ -1,5 +1,5 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faQuestion, faReply } from '@fortawesome/free-solid-svg-icons';
+import Score from './Score';
 
 function User(props) {
    const { username, image, questionsAsked, questionsAnswered } = props;
@@ -11,14 +11,8 @@ function User(props) {
          <label class="username">{username}</label>
        </div>
        <div class="questionDiv">
-       <div>
-         <FontAwesomeIcon icon={faQuestion} size="lg" style={{ color: 'orange' }}/>
-         <span class="score">{questionsAsked}</span>
-        </div>
-        <div>
-          <FontAwesomeIcon icon={faReply} size="lg" style={{ color: 'green' }}/>
-          <span class="score">{questionsAnswered}</span>
-        </div>
+        <Score faIcon={faQuestion} color={'orange'} scoreValue={questionsAsked}/>
+        <Score faIcon={faReply} color={'green'} scoreValue={questionsAnswered}/>
        </div>
      </div>
    )
