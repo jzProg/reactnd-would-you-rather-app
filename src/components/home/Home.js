@@ -11,7 +11,7 @@ class Home extends Component {
   state = {
     categories: [
       { text: 'HOME', path: '/home'},
-      { text: 'ADD NEW QUESTION', path: '/home/AddNewQuestion'},
+      { text: 'ADD QUESTION', path: '/home/AddNewQuestion'},
       { text: 'LEADERBOARD', path: '/home/leaderboard'}
     ],
     selected: 0,
