@@ -1,13 +1,17 @@
-import { _getUsers, _createUser, _authenticateUser } from '../utils/_DATA';
+import { _getUsers, _createUser, _authenticateUser, _getQuestions, _saveQuestion } from '../utils/_DATA';
 import { getHash } from '../utils/encryption';
 import { setUsers } from '../actions/users';
+import { setQuestions, addQuestion } from '../actions/questions';
 import { setAuthedToken, setAuthedUsername } from '../actions/authed';
 
 export function fetchInitialData() {
   return (dispatch) => {
-    return _getUsers()
-        .then((users) => {
+    return Promise.all([
+          _getUsers(),
+          _getQuestions(),
+       ]).then(([users, questions]) => {
           dispatch(setUsers(users));
+          dispatch(setQuestions(questions));
           const token = sessionStorage.getItem('authed');
           dispatch(setAuthedToken(token));
           const usersWithThisToken = Object.values(users).filter(user => user.token === token);
@@ -47,5 +51,16 @@ export function logoutUser() {
     sessionStorage.setItem('authed', '');
     dispatch(setAuthedToken(''));
     dispatch(setAuthedUsername(''));
+  }
+}
+
+export function addQuestionAction(optionA, optionB) {
+  return (dispatch, getState) => {
+    const { authed } = getState();
+    return _saveQuestion({
+      optionA,
+      optionB,
+      author: authed.username
+    }).then(question => dispatch(addQuestion(question)))
   }
 }

@@ -91,6 +91,15 @@ input, select {
   margin-left: 1%;
 }
 
+.addNewQuestionDiv {
+  width: 50%;
+  margin: 0 auto;
+  border-style: solid;
+  border-color: gray;
+  padding: 1%;
+  margin-top: 10%;
+}
+
 .footer{
   margin-top: 1rem;
   padding: 1rem;
