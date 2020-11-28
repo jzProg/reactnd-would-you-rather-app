@@ -6,7 +6,7 @@ function Score(props) {
    return (
         <div>
           <FontAwesomeIcon icon={faIcon} size="lg" style={{ color }}/>
-          <span class="score">{scoreValue}</span>
+          <span className="score">{scoreValue}</span>
         </div>
    )
 }

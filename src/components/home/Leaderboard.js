@@ -11,6 +11,7 @@ class Leaderboard extends Component {
         <ul>
           { Object.values(this.props.users).sort((user1, user2) => Object.keys(user1.answers).length + user1.questions.length < Object.keys(user2.answers).length + user2.questions.length)
                  .map(user => <User username={user.id}
+                                    key={user.id}
                                     image={user.avatarURL}
                                     questionsAsked={user.questions.length}
                                     questionsAnswered={Object.keys(user.answers).length}/>)
