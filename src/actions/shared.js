@@ -1,6 +1,6 @@
 import { _getUsers, _createUser, _authenticateUser, _getQuestions, _saveQuestion } from '../utils/_DATA';
 import { getHash } from '../utils/encryption';
-import { setUsers } from '../actions/users';
+import { setUsers, setUserQuestion } from '../actions/users';
 import { setQuestions, addQuestion } from '../actions/questions';
 import { setAuthedToken, setAuthedUsername } from '../actions/authed';
 
@@ -61,6 +61,9 @@ export function addQuestionAction(optionA, optionB) {
       optionA,
       optionB,
       author: authed.username
-    }).then(question => dispatch(addQuestion(question)))
+    }).then(question => {
+      dispatch(addQuestion(question));
+      dispatch(setUserQuestion(authed.username, question.id));
+    })
   }
 }
