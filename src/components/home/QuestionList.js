@@ -1,14 +1,27 @@
 import { React, Component } from 'react';
-import { withRouter, Route } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import Question from './Question';
 
 class QuestionList extends Component {
   render() {
    return (
      <div>
-      QUESTION LIST
+      <ul>
+        { Object.values(this.props.questions).map(question =>
+          <li>
+          { question.id }
+          </li>) }
+      </ul>
      </div>
    )
  }
 }
 
-export default withRouter(QuestionList);
+function mapStateToProps({ questions }) {
+  return {
+    questions
+  }
+}
+
+export default connect(mapStateToProps)(withRouter(QuestionList));

@@ -4,6 +4,7 @@ import { logoutUser } from '../../actions/shared';
 import { connect } from 'react-redux';
 import NavigationBar from './NavigationBar';
 import ContentFragment from './ContentFragment';
+import Logout from './Logout';
 
 class Home extends Component {
 
@@ -14,6 +15,7 @@ class Home extends Component {
       { text: 'LEADERBOARD', path: '/home/leaderboard'}
     ],
     selected: 0,
+    navColors: { color: 'gray', selectionColor: 'darkgray' }
   }
 
   logout = () => {
@@ -29,10 +31,16 @@ class Home extends Component {
 
   render() {
    const { username, users } = this.props;
-   const { categories, selected } = this.state;
+   const { categories, selected, navColors } = this.state;
    return (
      <div className="App-home">
-      <NavigationBar onLogout={this.logout} users={users} username={username} selected={selected} categories={categories} onToggle={this.toggle}/>
+      <NavigationBar component={Logout}
+                     extraData={{users, username, onLogout: this.logout}}
+                     navColor={navColors}
+                     username={username}
+                     selected={selected}
+                     categories={categories}
+                     onToggle={this.toggle}/>
       <ContentFragment/>
      </div>
    )

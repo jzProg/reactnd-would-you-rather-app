@@ -1,13 +1,13 @@
 import { Route } from 'react-router-dom';
 import Leaderboard from './Leaderboard';
 import AddNewQuestion from './AddNewQuestion';
-import QuestionList from './QuestionList';
+import QuestionNav from './QuestionNav';
 
 function ContentFragment() {
    return (
      <div className="container">
        <Route exact path='/home'>
-         <QuestionList/>
+         <QuestionNav/>
        </Route>
        <Route exact path='/home/leaderboard'>
          <Leaderboard/>

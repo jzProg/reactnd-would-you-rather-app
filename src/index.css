@@ -68,10 +68,6 @@ input, select {
   padding: 3px;
 }
 
-.navItem:hover {
-  background-color: darkgray;
-}
-
 .user {
   border-style: solid;
   border-color: gray;
