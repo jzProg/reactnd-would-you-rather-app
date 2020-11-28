@@ -54,12 +54,12 @@ export function logoutUser() {
   }
 }
 
-export function addQuestionAction(optionA, optionB) {
+export function addQuestionAction(optionOneText, optionTwoText) {
   return (dispatch, getState) => {
     const { authed } = getState();
     return _saveQuestion({
-      optionA,
-      optionB,
+      optionOneText,
+      optionTwoText,
       author: authed.username
     }).then(question => {
       dispatch(addQuestion(question));
