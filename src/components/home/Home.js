@@ -32,10 +32,12 @@ class Home extends Component {
   render() {
    const { username, users } = this.props;
    const { categories, selected, navColors } = this.state;
+   const user = users[username];
+   
    return (
      <div className="App-home">
       <NavigationBar component={Logout}
-                     extraData={{users, username, onLogout: this.logout}}
+                     extraData={{user, onLogout: this.logout}}
                      navColor={navColors}
                      username={username}
                      selected={selected}
