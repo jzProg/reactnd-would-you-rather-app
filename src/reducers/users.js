@@ -1,4 +1,4 @@
-import { SET_USERS, SET_USER_QUESTION } from '../actions/users';
+import { SET_USERS, SET_USER_QUESTION, SET_USER_TOKEN } from '../actions/users';
 
 export default function users(state = {}, action) {
   switch(action.type) {
@@ -11,6 +11,13 @@ export default function users(state = {}, action) {
     [action.userId]: {
       ...state[action.userId],
       questions: state[action.userId].questions.concat([action.questionId])
+    }
+  };
+  case SET_USER_TOKEN: return {
+    ...state,
+    [action.userId]: {
+      ...state[action.userId],
+      token: action.token
     }
   };
   default: return state;

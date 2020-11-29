@@ -1,6 +1,6 @@
 import { _getUsers, _createUser, _authenticateUser, _getQuestions, _saveQuestion } from '../utils/_DATA';
 import { getHash } from '../utils/encryption';
-import { setUsers, setUserQuestion } from '../actions/users';
+import { setUsers, setUserQuestion, setUserToken } from '../actions/users';
 import { setQuestions, addQuestion } from '../actions/questions';
 import { setAuthedToken, setAuthedUsername } from '../actions/authed';
 
@@ -25,8 +25,8 @@ export function fetchInitialData() {
 export function authenticate(username, pass) {
   return (dispatch) => {
     return _authenticateUser(username, getHash(pass))
-        .then(({ users, token }) => {
-          dispatch(setUsers(users));
+        .then(({ token }) => {
+          dispatch(setUserToken(username, token));
           sessionStorage.setItem('authed', token);
           dispatch(setAuthedToken(token));
           if (token) dispatch(setAuthedUsername(username));

@@ -133,7 +133,7 @@ export function _authenticateUser (username, pass) {
         token = generateUID();
         users[username].token = token;
       }
-      res({ ...users, token })
+      res({ token })
     }, 1000)
   })
 }
