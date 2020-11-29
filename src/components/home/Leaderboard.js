@@ -9,7 +9,7 @@ class Leaderboard extends Component {
     const { users, username } = this.props;
 
     return (
-      <div>
+      <div className="scrollable">
         <ul>
           { Object.values(users).sort((user1, user2) => Object.keys(user1.answers).length + user1.questions.length < Object.keys(user2.answers).length + user2.questions.length)
                  .map(user => <User username={user.id}
