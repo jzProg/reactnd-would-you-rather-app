@@ -1,6 +1,7 @@
 import { React, Component } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { connect } from 'react-redux';
+import LoadingBar from 'react-redux-loading';
 import { fetchInitialData } from '../actions/shared';
 import Visitor from './visitor/Visitor';
 import Home from './home/Home';
@@ -32,6 +33,7 @@ class App extends Component {
     return (
         <Router>
           <div className="App">
+              <LoadingBar/>
               { this.state.load && (
                   <header className="App-header">
                     <Visitor/>

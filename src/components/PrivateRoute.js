@@ -9,7 +9,7 @@ function PrivateRoute ({ component: Component, auth, validRoutes, questions, use
   }
 
   function isValidRoute(path) {
-    return validRoutes.filter(route => route === path  || route.includes('*') && checkQuestionId(path)).length;
+    return validRoutes.filter(route => route === path  || (route.includes('*') && checkQuestionId(path)).length);
   }
 
   function checkQuestionId(path) {
