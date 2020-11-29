@@ -183,6 +183,18 @@ input[type="radio"] {
   padding: 3%;
 }
 
+.resultText {
+  color: orange;
+}
+
+.scrollable {
+    height: 860px;
+    overflow-y:auto;
+    max-width: 100%;
+    overflow-x: hidden;
+    word-wrap:break-word;
+}
+
 .footer{
   margin-top: 1rem;
   padding: 1rem;

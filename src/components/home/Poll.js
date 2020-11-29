@@ -41,7 +41,7 @@ class Poll extends Component {
         <span  style={{ marginLeft: '1%', color: '#337ab7'}}>{ author }</span>
         <img style={{ marginLeft: '1%'}} src={ avatarURL } alt="Avatar" className="avatar"/>
         { users[username].answers[questionId] ?
-          (<ProgressBar options={[optionOne, optionTwo]}/>)
+          (<ProgressBar options={[optionOne, optionTwo]} user={username}/>)
           :
           (<Vote options={[{ id: 'optionOne', value: optionOne }, { id: 'optionTwo', value: optionTwo }]}
                  onVote={this.vote}

@@ -20,7 +20,7 @@ class QuestionList extends Component {
 
   render() {
    return (
-     <div>
+     <div className="scrollable">
         { this.props.questions.filter(question => this.hasUserAnswered(question)).map(question =>
           <Question key={question.id} question={question} onDetails={this.seeDetails}/>)
         }
