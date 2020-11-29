@@ -110,6 +110,79 @@ input, select {
   margin-top: 2%;
 }
 
+input[type="radio"] {
+   width: 5%;
+}
+
+.radio-label {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.radio-label .checkmark:after {
+  top: 9px;
+  left: 9px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
+}
+
+.radio-label:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+.radio-label input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+.radio-label  input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.radio-label input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+.radio-label input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.voteDiv {
+  border-color: orange;
+  border-style: solid;
+  width: 40%;
+  margin: 0 auto;
+  margin-top: 5%;
+  padding: 3%;
+}
+
 .footer{
   margin-top: 1rem;
   padding: 1rem;

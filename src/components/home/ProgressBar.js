@@ -1,7 +1,10 @@
 function ProgressBar(props) {
+   const { options } = props;
+
    return (
       <div>
-      ProgressBar
+       <h3>Results</h3>
+       { options.map(option => <div>{option.text}</div>)}
       </div>
    )
 }
