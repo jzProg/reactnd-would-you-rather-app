@@ -188,11 +188,19 @@ input[type="radio"] {
 }
 
 .scrollable {
-    height: 860px;
-    overflow-y:auto;
-    max-width: 100%;
-    overflow-x: hidden;
-    word-wrap:break-word;
+  height: 860px;
+  overflow-y:auto;
+  max-width: 100%;
+  overflow-x: hidden;
+  word-wrap:break-word;
+}
+
+.userIndicator {
+  background-color: green;
+  border-radius: 10%;
+  margin-left: 1%;
+  font-size: 60%;
+  padding: 2px;
 }
 
 .footer{
