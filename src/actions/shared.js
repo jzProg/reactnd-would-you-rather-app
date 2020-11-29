@@ -25,7 +25,7 @@ export function fetchInitialData() {
 export function authenticate(username, pass) {
   return (dispatch) => {
     return _authenticateUser(username, getHash(pass))
-        .then(({ token }) => {
+        .then(token => {
           dispatch(setUserToken(username, token));
           sessionStorage.setItem('authed', token);
           dispatch(setAuthedToken(token));
