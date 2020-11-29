@@ -13,7 +13,7 @@ function ContentFragment() {
        <Route exact path='/leaderboard'>
          <Leaderboard/>
        </Route>
-       <Route exact path='/AddNewQuestion'>
+       <Route exact path='/add'>
          <AddNewQuestion/>
        </Route>
        <Route path='/questions/:questionId'>

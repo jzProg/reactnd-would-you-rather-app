@@ -10,6 +10,14 @@ import Footer from './Footer';
 class App extends Component {
 
   state = {
+    validRoutes: [
+      '/',
+      '/leaderboard',
+      '/add',
+      '/register',
+      '/login',
+      '/questions/*'
+    ],
     load: false
   }
 
@@ -20,7 +28,7 @@ class App extends Component {
   }
 
   render() {
-    const { users, authed } = this.props;
+    const { users, authed, questions } = this.props;
     return (
         <Router>
           <div className="App">
@@ -28,6 +36,8 @@ class App extends Component {
                   <header className="App-header">
                     <Visitor/>
                     <PrivateRoute component={Home}
+                                  validRoutes={this.state.validRoutes}
+                                  questions={questions}
                                   users={users}
                                   auth={authed}/>
                   </header>
@@ -39,9 +49,10 @@ class App extends Component {
   }
 }
 
-function mapStateToProps({ authed, users }) {
+function mapStateToProps({ authed, questions, users }) {
   return {
     users,
+    questions,
     authed
   }
 }
