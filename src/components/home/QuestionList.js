@@ -15,7 +15,7 @@ class QuestionList extends Component {
   }
 
   seeDetails = (questionId) => {
-
+    this.props.history.push(`/home/questions/${questionId}`);
   }
 
   render() {

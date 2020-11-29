@@ -4,7 +4,7 @@ function Question(props) {
    return (
       <div className="question">
         <h3>
-        <span style={{ color: '#800000' }}>{ author }</span> asked: { optionOne.text }...
+        <span style={{ color: 'orange' }}>{ author }</span> asked <span style={{ color: 'green' }}><i>{ optionOne.text }...</i></span>
         </h3>
         <button className="btn btn-primary" onClick={() => props.onDetails(id)}>See Polls</button>
       </div>
