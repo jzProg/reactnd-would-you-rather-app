@@ -25,7 +25,7 @@ class AddNewQuestion extends Component {
     }
     const { dispatch, history } = this.props;
     dispatch(addQuestionAction(optionA, optionB)).then(() => {
-      history.push('/home');
+      history.push('/');
     });
   }
 

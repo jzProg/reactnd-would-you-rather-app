@@ -32,7 +32,7 @@ class Visitor extends Component {
     }
     const avatar = `/avatars/avatar${this.state.selectedAvatarIndex}.png`;
     this.props.dispatch(createUserAccount(username, name, pass, avatar)).then(() => {
-      this.props.history.push('/home');
+      this.props.history.push('/');
     });
   }
 
@@ -42,8 +42,9 @@ class Visitor extends Component {
     return;
   }
   this.props.dispatch(authenticate(username, pass)).then(() => {
-      if (this.props.authToken) {
-        this.props.history.push('/home');
+      const { token, username } = this.props.authed;
+      if (token && username) {
+        this.props.history.push('/');
       } else {
         this.setState({ error: 'wrong password...'});
       }
@@ -53,9 +54,9 @@ class Visitor extends Component {
   render() {
    const { error, selectedAvatarIndex } = this.state;
    return (
-     <Route path='/'>
+     <Route>
        <VisitorWrapper component={Login}
-                       path="/"
+                       path="/login"
                        onAuth={this.auth}
                        usernames={Object.keys(this.props.users)}
                        errorMessage={error}
@@ -74,7 +75,7 @@ class Visitor extends Component {
 
 function mapStateToProps({ authed, users }) {
   return {
-    authToken: authed.token,
+    authed,
     users
   }
 }

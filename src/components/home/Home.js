@@ -10,9 +10,9 @@ class Home extends Component {
 
   state = {
     categories: [
-      { text: 'HOME', path: '/home'},
-      { text: 'ADD QUESTION', path: '/home/AddNewQuestion'},
-      { text: 'LEADERBOARD', path: '/home/leaderboard'}
+      { text: 'HOME', path: '/'},
+      { text: 'ADD QUESTION', path: '/AddNewQuestion'},
+      { text: 'LEADERBOARD', path: '/leaderboard'}
     ],
     selected: 0,
     navColors: { color: 'gray', selectionColor: 'darkgray' }
@@ -33,7 +33,7 @@ class Home extends Component {
    const { username, users } = this.props;
    const { categories, selected, navColors } = this.state;
    const user = users[username];
-   
+
    return (
      <div className="App-home">
       <NavigationBar component={Logout}

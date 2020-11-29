@@ -10,7 +10,7 @@ function ProgressBar(props) {
    }
 
    function userVote(option) {
-     return option.votes.indexOf(user) != -1;
+     return option.votes.indexOf(user) !== -1;
    }
 
    return (
@@ -21,7 +21,10 @@ function ProgressBar(props) {
            <li style={{ width: '30%', margin: '0 auto', marginTop: '5%', marginBottom: '7%' }} key={option.text}>
              <h3 className="resultText">Would You Rather {option.text} </h3>
              <h4>{option.votes.length}/{numOfVoters} votes</h4>
-             {userVote(option) && (<span style={{ fontSize: '70%'}}><FontAwesomeIcon icon={faCheck} size="sm" style={{ color: 'green' }}/>Your vote</span>)}
+             {userVote(option) && (<span style={{ fontSize: '70%'}}>
+                                    <FontAwesomeIcon icon={faCheck} size="sm" style={{ color: 'green' }}/>
+                                     Your vote
+                                   </span>)}
              <div style={{ backgroundColor: 'gray' }}>
                <div style={{ backgroundColor: 'green', width: `${calculatePercentage(option.votes.length)}%` }}>
                  {calculatePercentage(option.votes.length)}%

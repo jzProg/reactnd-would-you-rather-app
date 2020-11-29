@@ -19,7 +19,7 @@ class Poll extends Component {
       this.setState({ error: 'You should choose one option...'});
       return;
     }
-    const { dispatch, match, history } = this.props;
+    const { dispatch, match } = this.props;
     dispatch(answerQuestionAction(match.params.questionId, selected));
   }
 

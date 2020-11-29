@@ -52,7 +52,7 @@ class Register extends Component {
                  onClick={this.register}>
                  <b>REGISTER</b>
          </button>
-         <h4><i>Already a member? </i> <Link to={'/'}>Sign In here</Link></h4>
+         <h4><i>Already a member? </i> <Link to={'/login'}>Sign In here</Link></h4>
       </div>
     )
   }

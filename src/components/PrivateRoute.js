@@ -1,10 +1,11 @@
 import { Redirect } from "react-router";
 import { Route } from 'react-router-dom';
 
-function PrivateRoute ({ component: Component, token, users, ...props }) {
+function PrivateRoute ({ component: Component, auth, users, ...props }) {
 
   function checkAuth() {
-    return token && Object.values(users).filter(user => user.token === token).length;
+    const { token, username } = auth;
+    return token && username && Object.values(users).filter(user => user.token === token).length;
   }
 
   return (
@@ -14,7 +15,7 @@ function PrivateRoute ({ component: Component, token, users, ...props }) {
         checkAuth() ? (
           <Component {...innerProps} />
         ) : (
-          <Redirect to={{ pathname: "/", state: { from: props.location }}}/>
+          <Redirect to={{ pathname: "/login", state: { from: props.location }}}/>
         )
       }
     />

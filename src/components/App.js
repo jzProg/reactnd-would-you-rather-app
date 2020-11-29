@@ -20,14 +20,16 @@ class App extends Component {
   }
 
   render() {
-    const { users, authToken } = this.props;
+    const { users, authed } = this.props;
     return (
         <Router>
           <div className="App">
               { this.state.load && (
                   <header className="App-header">
                     <Visitor/>
-                    <PrivateRoute component={Home} users={users} path='/home' token={authToken}/>
+                    <PrivateRoute component={Home}
+                                  users={users}
+                                  auth={authed}/>
                   </header>
               )}
             <Footer/>
@@ -40,7 +42,7 @@ class App extends Component {
 function mapStateToProps({ authed, users }) {
   return {
     users,
-    authToken: authed.token
+    authed
   }
 }
 
