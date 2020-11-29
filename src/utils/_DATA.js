@@ -125,6 +125,16 @@ function generateUID () {
   return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
 }
 
+export function _updateData(updatesUsers, updatesQuestions) {
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      users = updatesUsers;
+      questions = updatesQuestions;
+      res()
+    }, 1000)
+  })
+}
+
 export function _authenticateUser (username, pass) {
   return new Promise((res, rej) => {
     setTimeout(() => {

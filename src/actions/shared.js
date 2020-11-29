@@ -1,24 +1,23 @@
-import { _getUsers, _createUser, _authenticateUser, _getQuestions, _saveQuestion, _saveQuestionAnswer } from '../utils/_DATA';
+import { _getUsers, _createUser, _authenticateUser, _getQuestions, _saveQuestion, _saveQuestionAnswer, _updateData } from '../utils/_DATA';
 import { getHash } from '../utils/encryption';
 import { setUsers, setUserQuestion, setUserToken, setUserAnswer } from '../actions/users';
 import { setQuestions, addQuestion, addQuestionAnswer } from '../actions/questions';
 import { setAuthedToken, setAuthedUsername } from '../actions/authed';
 
 export function fetchInitialData() {
-  return (dispatch) => {
-    return Promise.all([
-          _getUsers(),
-          _getQuestions(),
-       ]).then(([users, questions]) => {
-          dispatch(setUsers(users));
-          dispatch(setQuestions(questions));
-          const token = sessionStorage.getItem('authed');
-          dispatch(setAuthedToken(token));
-          const usersWithThisToken = Object.values(users).filter(user => user.token === token);
-          if (usersWithThisToken.length) {
-            dispatch(setAuthedUsername(usersWithThisToken[0].username));
-          }
-        });
+  return (dispatch, getState) => {
+    const { users, questions } = getState();
+    if (Object.keys(users).length && Object.keys(questions).length) { // fetch from browser storage and update backend
+      return _updateData(users, questions);
+    } else {
+      return Promise.all([
+            _getUsers(),
+            _getQuestions(),
+         ]).then(([users, questions]) => {
+            dispatch(setUsers(users));
+            dispatch(setQuestions(questions));
+          });
+    }
   }
 }
 
@@ -27,7 +26,6 @@ export function authenticate(username, pass) {
     return _authenticateUser(username, getHash(pass))
         .then(token => {
           dispatch(setUserToken(username, token));
-          sessionStorage.setItem('authed', token);
           dispatch(setAuthedToken(token));
           if (token) dispatch(setAuthedUsername(username));
         });
@@ -37,9 +35,8 @@ export function authenticate(username, pass) {
 export function createUserAccount(username, name, pass, avatar) {
   return (dispatch) => {
     return _createUser(username, name, getHash(pass), avatar)
-        .then((users) => {
+        .then(users => {
           dispatch(setUsers(users));
-          sessionStorage.setItem('authed', users[username].token);
           dispatch(setAuthedToken(users[username].token));
           dispatch(setAuthedUsername(username));
         });
@@ -48,7 +45,6 @@ export function createUserAccount(username, name, pass, avatar) {
 
 export function logoutUser() {
   return (dispatch) => {
-    sessionStorage.setItem('authed', '');
     dispatch(setAuthedToken(''));
     dispatch(setAuthedUsername(''));
   }
@@ -75,7 +71,7 @@ export function answerQuestionAction(qid, answer) {
       authedUser: authed.username,
       qid,
       answer
-    }).then(question => {
+    }).then(() => {
       dispatch(addQuestionAnswer(qid, answer, authed.username));
       dispatch(setUserAnswer(qid, answer, authed.username));
     })
