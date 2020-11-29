@@ -1,6 +1,7 @@
 import { Redirect } from "react-router";
 import { Route } from 'react-router-dom';
 import Page404 from './Page404';
+
 function PrivateRoute ({ component: Component, auth, validRoutes, questions, users, ...props }) {
 
   function checkAuth() {
