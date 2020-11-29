@@ -1,7 +1,7 @@
-import { _getUsers, _createUser, _authenticateUser, _getQuestions, _saveQuestion } from '../utils/_DATA';
+import { _getUsers, _createUser, _authenticateUser, _getQuestions, _saveQuestion, _saveQuestionAnswer } from '../utils/_DATA';
 import { getHash } from '../utils/encryption';
-import { setUsers, setUserQuestion, setUserToken } from '../actions/users';
-import { setQuestions, addQuestion } from '../actions/questions';
+import { setUsers, setUserQuestion, setUserToken, setUserAnswer } from '../actions/users';
+import { setQuestions, addQuestion, addQuestionAnswer } from '../actions/questions';
 import { setAuthedToken, setAuthedUsername } from '../actions/authed';
 
 export function fetchInitialData() {
@@ -64,6 +64,20 @@ export function addQuestionAction(optionOneText, optionTwoText) {
     }).then(question => {
       dispatch(addQuestion(question));
       dispatch(setUserQuestion(authed.username, question.id));
+    })
+  }
+}
+
+export function answerQuestionAction(qid, answer) {
+  return (dispatch, getState) => {
+    const { authed } = getState();
+    return _saveQuestionAnswer({
+      authedUser: authed.username,
+      qid,
+      answer
+    }).then(question => {
+      dispatch(addQuestionAnswer(qid, answer, authed.username));
+      dispatch(setUserAnswer(qid, answer, authed.username));
     })
   }
 }

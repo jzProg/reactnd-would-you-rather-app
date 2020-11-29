@@ -3,7 +3,7 @@ function Form(props) {
 
   return (
     <div className="formContainer">
-     { fields.map((field, index) =>
+     { fields.map(field =>
        <div key={field.name}>
         { field.type !== 'radio' && (<label>{ field.name }</label>)}
         { field.options && field.options.length ?
@@ -13,12 +13,12 @@ function Form(props) {
          : field.type === 'radio' ?
              (<label className={`${selected === field.name ? 'checked' : ''} radio-label`}>
                <span style={{marginRight: '1%'}}>{field.name} </span>
-               <input id={index}
+               <input id={field.id}
                       type={ field.type }
                       name={'radio-selection'}
-                      value= {field.name}
+                      value= {field.id}
                       onChange={onFocus}/>
-               <span class="checkmark"></span>
+               <span className="checkmark"></span>
                </label>)
              :
              (<input id={ field.name } type={ field.type } onFocus={onFocus}/>)

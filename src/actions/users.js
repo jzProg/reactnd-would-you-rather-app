@@ -1,6 +1,7 @@
 export const SET_USERS = 'SET_USERS';
 export const SET_USER_QUESTION = 'SET_USER_QUESTION';
 export const SET_USER_TOKEN = 'SET_USER_TOKEN';
+export const SET_USER_ANSWER = 'SET_USER_ANSWER';
 
 export function setUsers(users) {
   return {
@@ -22,5 +23,14 @@ export function setUserToken(userId, token) {
     type: SET_USER_TOKEN,
     userId,
     token
+  }
+}
+
+export function setUserAnswer(qid, answer, userId) {
+  return {
+    type: SET_USER_ANSWER,
+    qid,
+    answer,
+    userId
   }
 }

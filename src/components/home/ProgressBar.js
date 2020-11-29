@@ -4,7 +4,7 @@ function ProgressBar(props) {
    return (
       <div>
        <h3>Results</h3>
-       { options.map(option => <div>{option.text}</div>)}
+       { options.map(option => <div key={option.text}>{option.text}</div>)}
       </div>
    )
 }

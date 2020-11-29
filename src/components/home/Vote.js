@@ -4,7 +4,7 @@ import Form from '../Form';
 class Vote extends Component {
   render() {
     const [optionOne, optionTwo] = this.props.options;
-    const fieldObject = [optionOne, optionTwo].map(option => { return { name: option.text, type: 'radio' }; });
+    const fieldObject = [optionOne, optionTwo].map(option => { return { id: option.id, name: option.value.text, type: 'radio' }; });
     return (
        <div>
          <div className="voteDiv">

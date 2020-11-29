@@ -1,6 +1,7 @@
 import { React, Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { answerQuestionAction } from '../../actions/shared';
 import ProgressBar from './ProgressBar';
 import Vote from './Vote';
 
@@ -18,7 +19,8 @@ class Poll extends Component {
       this.setState({ error: 'You should choose one option...'});
       return;
     }
-    console.log(this.state.selected);
+    const { dispatch, match, history } = this.props;
+    dispatch(answerQuestionAction(match.params.questionId, selected));
   }
 
   select = (event) => {
@@ -41,7 +43,11 @@ class Poll extends Component {
         { users[username].answers[questionId] ?
           (<ProgressBar options={[optionOne, optionTwo]}/>)
           :
-          (<Vote options={[optionOne, optionTwo]} onVote={this.vote} onSelect={this.select} selected={this.state.selected} errorMessage={this.state.error}/>)
+          (<Vote options={[{ id: 'optionOne', value: optionOne }, { id: 'optionTwo', value: optionTwo }]}
+                 onVote={this.vote}
+                 onSelect={this.select}
+                 selected={this.state.selected}
+                 errorMessage={this.state.error}/>)
         }
       </div>
    )
