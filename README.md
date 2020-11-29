@@ -6,7 +6,7 @@ My implementation of the final assessment project Udacity's React & Redux course
 
 - Loading Bar.
 - Dummy JWT-like **Authentication** (due to simple backend setup).
-- **Registration** of new users.
+- **Registration** of new users (the `_DATA.js` file was edited in order to support that).
 - Persistence of session and newly created data using browser's **localStorage**.
 - Pre-configured avatar selection during account creation.
 
