@@ -31,7 +31,7 @@ class QuestionList extends Component {
 
 function mapStateToProps({ questions, authed }) {
   return {
-    questions: Object.values(questions).sort((question1, question2) => question1.timestamp < question2.timestamp),
+    questions: Object.values(questions).sort((question1, question2) => question2.timestamp - question1.timestamp),
     user: authed.username
   }
 }
