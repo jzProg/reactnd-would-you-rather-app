@@ -10,7 +10,7 @@ function PrivateRoute ({ component: Component, auth, validRoutes, questions, use
   }
 
   function isValidRoute(path) {
-    return validRoutes.filter(route => route === path  || (route.includes('*') && checkQuestionId(path)).length);
+    return validRoutes.filter(route => route === path  || (route.includes('*') && checkQuestionId(path))).length;
   }
 
   function checkQuestionId(path) {
@@ -28,7 +28,7 @@ function PrivateRoute ({ component: Component, auth, validRoutes, questions, use
         checkAuth() ? (
           <Component {...innerProps} />
         ) : (
-          <Redirect to={{ pathname: "/login", state: { from: props.location }}}/>
+          <Redirect to={{ pathname: "/login", state: { from: innerProps.location.pathname }}}/>
         )
       }
     />
