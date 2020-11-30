@@ -7,7 +7,7 @@ My implementation of the final assessment project Udacity's React & Redux course
 - Loading Bar.
 - Dummy JWT-like **Authentication** (due to simple backend setup).
 - **Registration** of new users (the `_DATA.js` file was edited in order to support that).
-- Persistence of session and newly created data using browser's **localStorage**.
+- Persistence of newly created data using browser's **localStorage**.
 - Pre-configured avatar selection during account creation.
 
 ## Authentication process
@@ -16,7 +16,7 @@ My implementation of the final assessment project Udacity's React & Redux course
  - In case of login, user enters username and plain password, the backend compares the 2 hashes and returns a new auth token to the client.
 
 ## State Preservation
- Due to the simple backend setup, the app state couldn't be preserved in case of refreshes or manually resource request, so in order to solve this issue, i configured the redux store to use the **localStorage** in order to initialize its data (the first time the initial data are fetched from backend, then from a serialized version of state from browser storage).
+ Due to the simple backend setup, the newly created data couldn't be preserved, so in order to solve this issue, i configured the redux store to use the **localStorage** in order to initialize its data (the first time the initial data are fetched from backend, then from a serialized version of state from browser storage).
 
 ## Initial test users/data
 
