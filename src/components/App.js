@@ -2,7 +2,7 @@ import { React, Component } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { connect } from 'react-redux';
 import LoadingBar from 'react-redux-loading';
-import { fetchInitialData } from '../actions/shared';
+import { fetchInitialData, logoutUser } from '../actions/shared';
 import Visitor from './visitor/Visitor';
 import Home from './home/Home';
 import PrivateRoute from './PrivateRoute';
@@ -23,9 +23,16 @@ class App extends Component {
   }
 
   componentDidMount() {
+    this.invalidateSession();
     this.props.dispatch(fetchInitialData()).then(() => {
       this.setState({ load: true });
     });
+  }
+
+  invalidateSession = () => {
+    window.onbeforeunload = (e) => { // on refresh
+      this.props.dispatch(logoutUser());
+    };
   }
 
   render() {
