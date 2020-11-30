@@ -1,4 +1,5 @@
 import { React, Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Form from '../Form';
 
@@ -15,7 +16,13 @@ class Login extends Component {
     event.preventDefault();
     const inputUsername = document.getElementById('username').value;
     const inputPassword = document.getElementById('password').value;
-    this.props.onAuth(inputUsername, inputPassword);
+    const next = this.decideNextStep();
+    this.props.onAuth(inputUsername, inputPassword, next);
+  }
+
+  decideNextStep = () => {
+    const locationState = this.props.location.state;
+    return  (locationState && locationState.from) || '/';
   }
 
   render() {
@@ -39,4 +46,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default withRouter(Login);

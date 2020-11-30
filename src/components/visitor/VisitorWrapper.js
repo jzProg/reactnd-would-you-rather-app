@@ -3,6 +3,7 @@ import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
 import { Route } from 'react-router-dom';
 
 function VisitorWrapper ({ component: Component, path, ...props }) {
+  
   return (
     <Route exact path={path}>
       <div className="App-logo">

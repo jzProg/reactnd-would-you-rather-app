@@ -36,7 +36,7 @@ class Visitor extends Component {
     });
   }
 
-  auth = (username, pass) => {
+  auth = (username, pass, nextPage) => {
   if (!username || !pass) {
     this.setState({ error: 'All fields are required...'});
     return;
@@ -44,7 +44,7 @@ class Visitor extends Component {
   this.props.dispatch(authenticate(username, pass)).then(() => {
       const { token, username } = this.props.authed;
       if (token && username) {
-        this.props.history.push('/');
+        this.props.history.push(nextPage);
       } else {
         this.setState({ error: 'wrong password...'});
       }

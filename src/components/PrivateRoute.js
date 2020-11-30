@@ -1,6 +1,8 @@
 import { Redirect } from "react-router";
 import { Route } from 'react-router-dom';
 import Page404 from './Page404';
+import Login from './visitor/Login';
+import Register from './visitor/Register';
 
 function PrivateRoute ({ component: Component, auth, validRoutes, questions, users, ...props }) {
 
@@ -19,17 +21,30 @@ function PrivateRoute ({ component: Component, auth, validRoutes, questions, use
     return Object.values(questions).filter(question => question.id === qid).length;
   }
 
+  function decideNextRouting(innerProps) {
+    const path = innerProps.location.pathname;
+    switch (path) {
+      case '/register': return <Register/>
+      case '/login': return <Login/>
+      default: return validateHomePage(path, innerProps);
+    }
+  }
+
+  function validateHomePage(path, props) {
+    if (checkAuth()) { // valid session active ?
+      if (!isValidRoute(path)) { // invalid route
+        return <Page404/>
+      }
+      return <Component {...props} />
+    }
+    return <Redirect to={{ pathname: "/login", state: { from: path }}}/> // redirect to login + set next page path
+  }
+
   return (
     <Route
       {...props}
       render={innerProps =>
-        !isValidRoute(innerProps.location.pathname) ? (<Page404/>)
-        :
-        checkAuth() ? (
-          <Component {...innerProps} />
-        ) : (
-          <Redirect to={{ pathname: "/login", state: { from: innerProps.location.pathname }}}/>
-        )
+        decideNextRouting(innerProps)
       }
     />
   );
